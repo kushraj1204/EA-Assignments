@@ -1,5 +1,6 @@
-package customers;
+package products;
 
+import customers.Logger;
 import org.springframework.stereotype.Repository;
 
 /**

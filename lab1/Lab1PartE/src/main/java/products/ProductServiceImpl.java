@@ -1,5 +1,6 @@
-package customers;
+package products;
 
+import customers.EmailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

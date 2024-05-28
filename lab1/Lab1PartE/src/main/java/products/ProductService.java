@@ -1,4 +1,4 @@
-package customers;
+package products;
 
 /**
  * @author kush

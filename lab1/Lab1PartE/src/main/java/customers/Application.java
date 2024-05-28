@@ -2,6 +2,7 @@ package customers;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import products.ProductService;
 
 public class Application {
 
