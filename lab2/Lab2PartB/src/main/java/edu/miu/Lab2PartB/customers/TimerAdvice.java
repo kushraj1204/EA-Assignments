@@ -3,14 +3,14 @@ package edu.miu.Lab2PartB.customers;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StopWatch;
 
 /**
  * @author kush
  */
 @Aspect
-@Component
+@Configuration
 public class TimerAdvice {
 
     @Around("execution(* edu.miu.Lab2PartB.customers.CustomerRepository.*(..))")

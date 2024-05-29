@@ -3,7 +3,7 @@ package edu.miu.Lab2PartB.customers;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  * @author kush
  */
 @Aspect
-@Component
+@Configuration
 public class LoggingAdvice {
 
     @After("execution(* edu.miu.Lab2PartB.customers.EmailSender.sendEmail(..)) && args(email,message)")

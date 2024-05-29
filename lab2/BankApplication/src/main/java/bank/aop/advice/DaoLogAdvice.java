@@ -4,14 +4,14 @@ import bank.integration.logging.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author kush
  */
 
 @Aspect
-@Component
+@Configuration
 public class DaoLogAdvice {
 
     final Logger logger;

@@ -4,7 +4,7 @@ import bank.integration.logging.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StopWatch;
 
 import java.util.UUID;
@@ -13,7 +13,7 @@ import java.util.UUID;
  * @author kush
  */
 @Aspect
-@Component
+@Configuration
 public class StopWatchAdvice {
     final Logger logger;
 
