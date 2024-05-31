@@ -1,19 +1,27 @@
 package domain;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+@Entity
 
 public class Customer {
 
+	@Id
+	@GeneratedValue
+	private Long id;
 	private String firstName;
 
 	private String lastName;
 
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Address address;
 
-	private Collection<Order> theOrders = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	private Collection<Order> orders = new ArrayList<>();
 
 	public Customer() {
 	}
@@ -43,11 +51,11 @@ public class Customer {
 	}
 
 	public Collection<Order> getTheOrders() {
-		return Collections.unmodifiableCollection(theOrders);
+		return Collections.unmodifiableCollection(orders);
 	}
 
 	public boolean addOrder(Order order) {
-		boolean added = theOrders.add(order); 
+		boolean added = orders.add(order);
 		if (added) {
 			order.setCustomer(this);
 		}
@@ -55,9 +63,9 @@ public class Customer {
 	}
 
 	public boolean removeOrder(Order order) {
-		boolean removed = theOrders.remove(order);
+		boolean removed = orders.remove(order);
 		if (removed) {
-			theOrders.remove(order);
+			orders.remove(order);
 		}
 		return removed;
 	}

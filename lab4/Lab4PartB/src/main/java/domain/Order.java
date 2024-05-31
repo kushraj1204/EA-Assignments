@@ -1,11 +1,18 @@
 package domain;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-
+@Entity
+@Table(name = "orders")
 public class Order {
+
+	@Id
+	@GeneratedValue
+	private Long id;
 
 	private String orderNumber;
 
@@ -13,8 +20,10 @@ public class Order {
 
 	private String status;
 
+	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Customer customer;
 
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Collection<OrderLine> orderLines = new ArrayList<>();
 
 	public Order() {

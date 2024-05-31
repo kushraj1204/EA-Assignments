@@ -17,6 +17,10 @@ public class Employee {
     @ManyToOne
     private Department department;
 
+    public Employee() {
+
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
