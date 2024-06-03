@@ -33,22 +33,32 @@ public class Application implements CommandLineRunner{
 	}
 
 	public void addBooks(){
+		System.out.println("Started adding books");
+		StopWatch sw = new StopWatch();
+		sw.start();
+
 		for (int x=0; x< 10000; x++){
 			int year = 1900 + new Random().nextInt(100-1) + 1;;
 			bookRepository.save( new Book("Harry Potter"+x, "J.K. Rowling"+x, "AA-345-"+x, year));
 		}
+		sw.stop();
+		long totaltime=sw.getTotalTimeMillis();
+		System.out.println("Added books in"+totaltime+" ms");
 	}
 
 	private void changeLocationCode() {
+		System.out.println("Changing the location code of all books");
 		StopWatch sw = new StopWatch();
 		sw.start();
 
-		List<Book> bookList = bookRepository.findAll();
+		bookRepository.updateLocationCodesWithPrefix("BB");
+		/*List<Book> bookList = bookRepository.findAll();
 		for (Book book : bookList){
 			String locationCode = book.getLocationCode();
 			book.setLocationCode("BB"+locationCode);
+
 			bookRepository.save(book);
-		}
+		}*/
 
 		sw.stop();
 		long totaltime=sw.getTotalTimeMillis();
@@ -56,14 +66,16 @@ public class Application implements CommandLineRunner{
 	}
 
 	private void removeOldBooks() {
+		System.out.println("Removing old books ");
 		StopWatch sw = new StopWatch();
 		sw.start();
 
-		List<Book> bookList = bookRepository.findAll();
+		bookRepository.deleteOldBooks(1950);
+		/*List<Book> bookList = bookRepository.findAll();
 		for (Book book : bookList){
 			if (book.getPublicationYear() < 1950)
 			   bookRepository.delete(book);
-		}
+		}*/
 
 		sw.stop();
 		long totaltime=sw.getTotalTimeMillis();
