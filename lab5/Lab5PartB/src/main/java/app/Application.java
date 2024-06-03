@@ -4,6 +4,7 @@ import domain.Appointment;
 import domain.Doctor;
 import domain.Patient;
 import domain.Payment;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,7 +17,8 @@ import java.util.List;
 
 @SpringBootApplication
 @EnableJpaRepositories("repositories")
-@EntityScan("domain") 
+@EntityScan("domain")
+
 public class Application implements CommandLineRunner{
 
 	@Autowired
@@ -28,6 +30,7 @@ public class Application implements CommandLineRunner{
 	}
 
 	@Override
+	@Transactional
 	public void run(String... args) throws Exception {
 
 		Doctor doctor1 = new Doctor("Chirurg", "Frank", "Brown");
@@ -37,7 +40,7 @@ public class Application implements CommandLineRunner{
 		Payment payment1 = new Payment("10-10-2008", 12.50);
 		Payment payment2 = new Payment("11-10-2008", 45.00);
 		Payment payment3 = new Payment("12-10-2008", 99.60);
-//		Payment payment4 = new Payment("13-10-2008", 55.80);
+		Payment payment4 = new Payment("13-10-2008", 55.80);
 
 		Patient patient1 = new Patient("Jerry Lewis", "34 4th avenue",
 				"13221", "New York");
@@ -52,13 +55,13 @@ public class Application implements CommandLineRunner{
 				payment2, doctor2);
 		Appointment appointment3 = new Appointment("13-11-2008", patient3,
 				payment3, doctor3);
-/*		Appointment appointment4 = new Appointment("14-11-2008", patient1,
-				payment4, doctor1);*/
+		Appointment appointment4 = new Appointment("14-11-2008", patient1,
+				payment4, doctor1);
 
 		appointmentRepository.save(appointment1);
 		appointmentRepository.save(appointment2);
 		appointmentRepository.save(appointment3);
-//		appointmentRepository.save(appointment4);
+		appointmentRepository.save(appointment4);
 
 		List<Appointment> appointments=appointmentRepository.findAll();
 		appointments.forEach(System.out::println);
