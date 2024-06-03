@@ -1,17 +1,16 @@
 package app;
 
-import domain.Appointment;
-import domain.Doctor;
-import domain.Patient;
-import domain.Payment;
+import domain.Student;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import repositories.AppointmentRepository;
+import repositories.CourseRepository;
+import repositories.DepartmentRepository;
+import repositories.GradeRepository;
+import repositories.StudentRepository;
 
 import java.util.List;
 
@@ -21,11 +20,19 @@ import java.util.List;
 
 public class Application implements CommandLineRunner{
 
-	@Autowired
-	AppointmentRepository appointmentRepository;
-	
+	final CourseRepository courseRepository;
+	final StudentRepository studentRepository;
+	final GradeRepository gradeRepository;
+	final DepartmentRepository departmentRepository;
 
-	public static void main(String[] args) {
+    public Application(CourseRepository courseRepository, StudentRepository studentRepository, GradeRepository gradeRepository, DepartmentRepository departmentRepository) {
+        this.courseRepository = courseRepository;
+        this.studentRepository = studentRepository;
+        this.gradeRepository = gradeRepository;
+        this.departmentRepository = departmentRepository;
+    }
+
+    public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 
@@ -33,38 +40,60 @@ public class Application implements CommandLineRunner{
 	@Transactional
 	public void run(String... args) throws Exception {
 
-		Doctor doctor1 = new Doctor("Chirurg", "Frank", "Brown");
-		Doctor doctor2 = new Doctor("Nurse", "Mary", "Jones");
-		Doctor doctor3 = new Doctor("Surgeon", "Jesus", "Christ");
+/*		Department d1=new Department("Compro");
+		Department d2=new Department("MBA");
 
-		Payment payment1 = new Payment("10-10-2008", 12.50);
-		Payment payment2 = new Payment("11-10-2008", 45.00);
-		Payment payment3 = new Payment("12-10-2008", 99.60);
-		Payment payment4 = new Payment("13-10-2008", 55.80);
+		Course c1=new Course("MPP");
+		Course c2=new Course("FPP");
+		Course c3=new Course("Accounting");
+		Course c4=new Course("Finance");
 
-		Patient patient1 = new Patient("Jerry Lewis", "34 4th avenue",
-				"13221", "New York");
-		Patient patient2 = new Patient("Frank Moore", "34 Mainstret",
-				"13221", "New York");
-		Patient patient3 = new Patient("Sam ruby", "105 N Street", "13221",
-				"New York");
+		departmentRepository.saveAll(Arrays.asList(d1,d2));
 
-		Appointment appointment1 = new Appointment("11-11-2008", patient1,
-				payment1, doctor1);
-		Appointment appointment2 = new Appointment("12-11-2008", patient2,
-				payment2, doctor2);
-		Appointment appointment3 = new Appointment("13-11-2008", patient3,
-				payment3, doctor3);
-		Appointment appointment4 = new Appointment("14-11-2008", patient1,
-				payment4, doctor1);
 
-		appointmentRepository.save(appointment1);
-		appointmentRepository.save(appointment2);
-		appointmentRepository.save(appointment3);
-		appointmentRepository.save(appointment4);
+		courseRepository.saveAll(Arrays.asList(c1,c2,c3,c4));
 
-		List<Appointment> appointments=appointmentRepository.findAll();
-		appointments.forEach(System.out::println);
+		Grade grade1=new Grade("3.21");
+		grade1.setCourse(c1);
+		Grade grade2=new Grade("3.22");
+		grade2.setCourse(c2);
+		Grade grade3=new Grade("3.23");
+		grade3.setCourse(c3);
+		Grade grade4=new Grade("3.24");
+		grade4.setCourse(c4);
+
+		Grade grade5=new Grade("3.21");
+		grade5.setCourse(c1);
+		Grade grade6=new Grade("3.22");
+		grade6.setCourse(c2);
+		Grade grade7=new Grade("3.23");
+		grade7.setCourse(c3);
+		Grade grade8=new Grade("3.24");
+		grade8.setCourse(c4);
+
+		gradeRepository.saveAll(Arrays.asList(grade1,grade2,grade3,grade4,grade5,grade6,grade7,grade8));
+
+		Student st1=new Student("Kush1","6175951");
+		Student st2=new Student("Kush2","6175952");
+		Student st3=new Student("Kush3","6175953");
+		Student st4=new Student("Kush4","6175954");
+		st1.setDepartment(d1);
+		st1.setGrades(Arrays.asList(grade1,grade2));
+		st2.setDepartment(d1);
+		st2.setGrades(Arrays.asList(grade5,grade6));
+		st3.setDepartment(d2);
+		st3.setGrades(Arrays.asList(grade3,grade4));
+		st4.setDepartment(d2);
+		st4.setGrades(Arrays.asList(grade7,grade8));
+		studentRepository.saveAll(Arrays.asList(st1,st2,st3,st4));*/
+
+		List<Student> students = studentRepository.findAllFromDepartment("Compro");
+		students.forEach(System.out::println);
+
+		List<Student> studentsTakingCourse = studentRepository.findAllTakingCourse("Finance");
+		studentsTakingCourse.forEach(System.out::println);
+
+
 	}
 
 }
