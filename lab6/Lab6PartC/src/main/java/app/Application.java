@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.util.StopWatch;
 import repository.BookRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -36,11 +37,12 @@ public class Application implements CommandLineRunner{
 		System.out.println("Started adding books");
 		StopWatch sw = new StopWatch();
 		sw.start();
-
+		List<Book> bookList=new ArrayList<>();
 		for (int x=0; x< 10000; x++){
 			int year = 1900 + new Random().nextInt(100-1) + 1;;
-			bookRepository.save( new Book("Harry Potter"+x, "J.K. Rowling"+x, "AA-345-"+x, year));
+			bookList.add( new Book("Harry Potter"+x, "J.K. Rowling"+x, "AA-345-"+x, year));
 		}
+		bookRepository.saveAll(bookList);
 		sw.stop();
 		long totaltime=sw.getTotalTimeMillis();
 		System.out.println("Added books in"+totaltime+" ms");
