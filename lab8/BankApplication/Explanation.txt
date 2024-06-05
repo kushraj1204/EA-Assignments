@@ -1,0 +1,4 @@
+In Bank Application we don't need eager loading anymore because the service class is now annotated with @Transactional.
+This means that each method in AccountService is a unit of work, and all the actions within it happen during the same
+transaction using the same persistence context. So, because of this the LazyInitializationException doesn't occur and hence
+we don't need eager loading anymore.
