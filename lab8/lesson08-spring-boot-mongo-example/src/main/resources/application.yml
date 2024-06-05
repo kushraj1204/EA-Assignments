@@ -1,0 +1,12 @@
+logging:
+  level:
+    root: ERROR
+    org:
+      springframework: ERROR
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: testdb
