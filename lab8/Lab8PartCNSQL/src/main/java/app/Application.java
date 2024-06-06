@@ -37,11 +37,11 @@ public class Application implements CommandLineRunner{
 		List<Person> persons=personRepository.findAll();
 		sw.stop();
 		long totaltime=sw.getTotalTimeMillis();
-		System.out.println("Fetched people with pets in"+totaltime+" ms");
+		System.out.println("Fetched people with pets in "+totaltime+" ms");
 	}
 
 	public void addPeople(){
-		System.out.println("Started adding people");
+		System.out.println("Started adding people ");
 		StopWatch sw = new StopWatch();
 		sw.start();
 		List<Person> peopleList=new ArrayList<>();
@@ -58,13 +58,13 @@ public class Application implements CommandLineRunner{
 		personRepository.saveAll(peopleList);
 		sw.stop();
 		long totaltime=sw.getTotalTimeMillis();
-		System.out.println("Added people in"+totaltime+" ms");
+		System.out.println("Added people in "+totaltime+" ms");
 	}
 
 /*	Started adding people
-	Added people in4643 ms
+	Added people in 4643 ms
 	Started fetching people
-	Fetched people with pets in680 ms*/
+	Fetched people with pets in 680 ms*/
 
 
 

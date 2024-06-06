@@ -1,0 +1,12 @@
+NoSQL(MongoDB)
+	Started adding people
+	Added people in 4643 ms
+	Started fetching people
+	Fetched people with pets in 680 ms
+
+
+SQL(MySQL)
+	Started adding people
+	Added people in 41512 ms
+	Started fetching people
+	Fetched people with pets in 3756 ms

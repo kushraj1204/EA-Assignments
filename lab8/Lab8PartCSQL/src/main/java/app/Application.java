@@ -39,7 +39,7 @@ public class Application implements CommandLineRunner{
 		List<Person> persons=personRepository.findAll();
 		sw.stop();
 		long totaltime=sw.getTotalTimeMillis();
-		System.out.println("Fetched people with pets in"+totaltime+" ms");
+		System.out.println("Fetched people with pets in "+totaltime+" ms");
 	}
 
 	public void addPeople(){
@@ -60,13 +60,13 @@ public class Application implements CommandLineRunner{
 		personRepository.saveAll(peopleList);
 		sw.stop();
 		long totaltime=sw.getTotalTimeMillis();
-		System.out.println("Added people in"+totaltime+" ms");
+		System.out.println("Added people in "+totaltime+" ms");
 	}
 
 /*	Started adding people
-	Added people in41512 ms
+	Added people in 41512 ms
 	Started fetching people
-	Fetched people with pets in3756 ms*/
+	Fetched people with pets in 3756 ms*/
 
 }
 
