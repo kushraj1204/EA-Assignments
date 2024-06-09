@@ -1,0 +1,8 @@
+logging:
+  level:
+    root: ERROR
+    org:
+      springframework: ERROR
+
+server:
+  port: 8081
