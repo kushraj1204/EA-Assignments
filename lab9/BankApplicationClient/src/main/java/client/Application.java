@@ -28,13 +28,13 @@ public class Application implements CommandLineRunner {
 		System.out.println(accountDto.getBalance());
 
 		// deposit
-		restTemplate.postForLocation(serverUrl+"/deposit", new DepositRequest(1387868687, 25,CurrencyCode.USD));
+		restTemplate.postForLocation(serverUrl+"/{accountNumber}/deposit", new DepositRequest(1387868687, 25,CurrencyCode.USD),1387868687);
 		accountDto= restTemplate.getForObject(serverUrl+"/{accountNumber}", AccountDto.class, 1387868687);
 		System.out.println(accountDto);
 		System.out.println(accountDto.getBalance());
 
 		// deposit
-		restTemplate.postForLocation(serverUrl+"/deposit", new DepositRequest(1387868687, 25,CurrencyCode.EURO));
+		restTemplate.postForLocation(serverUrl+"/{accountNumber}/deposit", new DepositRequest(1387868687, 25,CurrencyCode.EURO),1387868687);
 
 		// get account
 		accountDto= restTemplate.getForObject(serverUrl+"/{accountNumber}", AccountDto.class, 1387868687);
@@ -42,7 +42,7 @@ public class Application implements CommandLineRunner {
 		System.out.println(accountDto.getBalance());
 
 		// withdraw
-		restTemplate.postForLocation(serverUrl+"/withdraw", new WithdrawRequest(1387868687, 5,CurrencyCode.USD));
+		restTemplate.postForLocation(serverUrl+"/{accountNumber}/withdraw", new WithdrawRequest( 5,CurrencyCode.USD),1387868687);
 
 		// get account
 		accountDto= restTemplate.getForObject(serverUrl+"/{accountNumber}", AccountDto.class, 1387868687);
@@ -50,7 +50,7 @@ public class Application implements CommandLineRunner {
 		System.out.println(accountDto.getBalance());
 
 		// withdraw
-		restTemplate.postForLocation(serverUrl+"/withdraw", new WithdrawRequest(1387868687, 5,CurrencyCode.EURO));
+		restTemplate.postForLocation(serverUrl+"/{accountNumber}/withdraw", new WithdrawRequest( 5,CurrencyCode.EURO),1387868687);
 
 		// get account
 		accountDto= restTemplate.getForObject(serverUrl+"/{accountNumber}", AccountDto.class, 1387868687);
@@ -63,7 +63,7 @@ public class Application implements CommandLineRunner {
 		System.out.println(accountDto.getBalance());
 
 		// withdraw
-		restTemplate.postForLocation(serverUrl+"/transfer", new FundTransferRequest(1387868687,1263862, 5,"Just testing client"));
+		restTemplate.postForLocation(serverUrl+"/{accountNumber}/transfer", new FundTransferRequest(1263862, 5,"Just testing client"),1387868687);
 
 		// get account
 		accountDto= restTemplate.getForObject(serverUrl+"/{accountNumber}", AccountDto.class, 1387868687);

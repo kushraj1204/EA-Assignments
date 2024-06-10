@@ -41,20 +41,23 @@ public class BankController {
         return new ResponseEntity<AccountDto>(accountDto, HttpStatus.OK);
     }
 
-    @PostMapping("/deposit")
-    public ResponseEntity<?> depositAmount(@RequestBody DepositRequest request) {
+    @PostMapping("/{accountNumber}/deposit")
+    public ResponseEntity<?> depositAmount(@PathVariable long accountNumber,@RequestBody DepositRequest request) {
+        request.setAccountNumber(accountNumber);
         accountService.depositMoney(request);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping("/withdraw")
-    public ResponseEntity<?> withdrawAmount(@RequestBody WithdrawRequest request) {
+    @PostMapping("/{accountNumber}/withdraw")
+    public ResponseEntity<?> withdrawAmount(@PathVariable long accountNumber,@RequestBody WithdrawRequest request) {
+        request.setAccountNumber(accountNumber);
         accountService.withdrawMoney(request);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping("/transfer")
-    public ResponseEntity<?> transfer(@RequestBody FundTransferRequest request) {
+    @PostMapping("/{accountNumber}/transfer")
+    public ResponseEntity<?> transfer(@PathVariable long accountNumber,@RequestBody FundTransferRequest request) {
+        request.setFromAccountNumber(accountNumber);
         accountService.transferFunds(request);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

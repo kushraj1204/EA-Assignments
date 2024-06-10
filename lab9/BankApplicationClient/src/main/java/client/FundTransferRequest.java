@@ -4,7 +4,6 @@ package client;
  * @author kush
  */
 public class FundTransferRequest {
-    private long fromAccountNumber;
     private long toAccountNumber;
     private double amount;
     private String description;
@@ -12,20 +11,12 @@ public class FundTransferRequest {
     public FundTransferRequest() {
     }
 
-    public FundTransferRequest(long fromAccountNumber, long toAccountNumber, double amount, String description) {
-        this.fromAccountNumber = fromAccountNumber;
+    public FundTransferRequest(long toAccountNumber, double amount, String description) {
         this.toAccountNumber = toAccountNumber;
         this.amount = amount;
         this.description = description;
     }
 
-    public long getFromAccountNumber() {
-        return fromAccountNumber;
-    }
-
-    public void setFromAccountNumber(long fromAccountNumber) {
-        this.fromAccountNumber = fromAccountNumber;
-    }
 
     public long getToAccountNumber() {
         return toAccountNumber;
