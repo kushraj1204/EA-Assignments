@@ -27,9 +27,12 @@ public class Application implements CommandLineRunner {
 
         sender.send("createAccount",new AccountCreateRequest(567654324, "Madhusodan Chakraborty"));
         System.out.println("Message has been sent for account creation");
+        Thread.sleep(30000);
+
 
         sender.send("depositMoney",new DepositRequest(567654324, 25,CurrencyCode.EURO));
         System.out.println("Message has been sent for money deposit");
+        Thread.sleep(30000);
 
         sender.send("withdrawMoney",new WithdrawRequest( 567654324,5, CurrencyCode.USD));
         System.out.println("Message has been sent for money withdrawal");

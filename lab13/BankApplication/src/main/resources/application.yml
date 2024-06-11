@@ -1,16 +1,16 @@
 spring:
-#  kafka:
-#    bootstrap-servers: localhost:9092
-#    consumer:
-#      auto-offset-reset: earliest
-#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-#      group-id: gid
-#      properties:
-#        spring:
-#          json:
-#            trusted:
-#              packages: "bank.dto.request"
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      group-id: gid
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "bank.dto.request"
   activemq:
     broker-url: tcp://localhost:61616
     user: admin
