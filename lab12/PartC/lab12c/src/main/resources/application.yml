@@ -1,0 +1,12 @@
+application:
+  name: Lab12C
+  version: 1.0.0
+countries: USA,Canada,France
+server:
+  port: 8082
+  url: http://localhost:8082
+user:
+  firstname: Kush
+  lastname: Rimal
+  username: adminlongname
+  password: secretpassword

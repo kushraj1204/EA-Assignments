@@ -33,6 +33,9 @@ logging:
     name: /home/kush/logs/app.log
   level:
     root: info
+    org:
+      apache:
+        kafka: OFF
 
 management:
   endpoint:
