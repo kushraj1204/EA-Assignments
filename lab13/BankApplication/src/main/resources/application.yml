@@ -30,7 +30,7 @@ spring:
 
 logging:
   file:
-    name: ./logs/logfile.log
+    name: /home/kush/logs/app.log
   level:
     root: info
 
