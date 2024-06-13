@@ -6,11 +6,11 @@ import jakarta.validation.constraints.Size;
 public class Book {
 
 	@NotEmpty
-	@Size(min=2, max=10)
+	@Size(min=1, max=30)
 	private String isbn;
 
 	@NotEmpty
-	@Size(min=2, max=30)
+	@Size(min=1, max=50)
 	private String title;
 
 	private double price;
